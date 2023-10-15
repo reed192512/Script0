@@ -94,7 +94,7 @@ local Tabs = {
 # Add a Button/   
 
 local Button =
-Tabs.Scripts:AddButton({
+Tabs.Main:AddButton({
     Title = "Name of Button/버튼 이름 ",
     Callback = function()        
        Delete this text after. Put your script
