@@ -1,4 +1,4 @@
-# Begin Making your script!/스크립트 작성을 시작하세요! 
+# Begin Making your script!
 
 if getgenv().script then return end 
 
@@ -91,23 +91,23 @@ local Tabs = {
 
 }
 
-# Add a Button/버튼 추가   
+# Add a Button/   
 
 local Button =
 Tabs.Scripts:AddButton({
-    Title = "Name of Button",
+    Title = "Name of Button/버튼 이름 ",
     Callback = function()        
        Delete this text after. Put your script
     end
 })  
 
-# Add a Paragraph/단락 추가 
+# Add a Paragraph/
 
 Tabs.Main:AddParagraph({
     Title = "Add Your Title",
     Content = "Add Your Subtitle"
 })
 
-# End the script with this/이것으로 스크립트를 끝내세요 
+# End the script with this/
 
 Window:SelectTab(1)
