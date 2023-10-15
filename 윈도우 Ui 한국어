@@ -1,1 +1,113 @@
+# 스크립트 작성을 시작하세요! 
 
+if getgenv().script then return end 
+
+local HttpService = game:GetService("HttpService")
+local fileName = "SCRIPT/SETTINGS/" .. game.PlaceId .. '.txt'
+getgenv().settings = {}
+getgenv().script = true
+
+if isfile("SCRIPT/SETTINGS/" .. game.PlaceId .. '.txt') then
+    local sl, er = pcall(function()
+        getgenv().settings = game:GetService('HttpService'):JSONDecode(readfile("JAYYHUB/SETTINGS/" .. game.PlaceId .. '.txt'))
+    end)
+    if er ~= nil then
+        forceServerHop()
+        return
+    end
+end 
+
+writefile("SCRIPT/SETTINGS/" .. game.PlaceId .. '.txt', HttpService:JSONEncode(getgenv().settings))
+
+function forceServerHop()
+    local Api = "https://games.roblox.com/v1/games/"
+    local placeId, jobId = game.PlaceId, game.JobId
+    local serversUrl = Api .. placeId .. "/servers/Public?sortOrder=Desc&limit=100"
+
+    local function ListServers(cursor)
+        local raw = game:HttpGet(serversUrl .. (cursor and "&cursor=" .. cursor or ""))
+        return HttpService:JSONDecode(raw)
+    end
+
+    local nextCursor
+    repeat
+        local serversData = ListServers(nextCursor)
+        for _, server in ipairs(serversData.data) do
+            if server.playing < server.maxPlayers and server.id ~= jobId then
+                local success, result = pcall(TeleportService.TeleportToPlaceInstance, TeleportService, placeId, server.id, LocalPlayer)
+                if success then
+                    break
+                end
+            end
+        end
+        nextCursor = serversData.nextPageCursor
+    until not nextCursor
+end
+
+local myEvent = Instance.new("BindableEvent")
+local connection = myEvent.Event:Connect(function()
+end)
+
+local function createLoop(callback)
+    return spawn(function()
+        while task.wait() do
+            if connection.Connected == true then
+                local success, result = pcall(function() 
+                    callback()
+                end)
+            end
+        end
+    end)
+end
+
+createLoop(function()
+    for key, value in pairs(getgenv().settings) do
+	if connection.Connected == true and getgenv().settings.AutoSave == true then 
+        getgenv().settings[key] = value
+        writefile(fileName, HttpService:JSONEncode(getgenv().settings))
+		end
+    end
+end)
+
+local Fluent = loadstring(game:HttpGet("https://github.com/13B8B/nexus/releases/download/nexus/nexus.txt"))()
+--[[
+   premium = true
+]]
+
+local Window = Fluent:CreateWindow({
+    Title = "스크립트 이름 ", "",
+    SubTitle = "스크립트 부제목 . Jayyware 제공 ",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Light",
+})
+
+local Tabs = {
+    Main = Window:AddTab({
+        Title = "기본 ",
+        Icon = "rbxassetid://10723424505"
+    }),
+
+}
+
+# 버튼 추가 
+
+local Button =
+Tabs.Main:AddButton({
+    Title = "버튼 이름 ",
+    Callback = function()        
+       다음 이후에 이 텍스트를 삭제하세요.여기에 스크립트를 넣으세요 
+    end
+})  
+
+# Add a Paragraph/
+
+Tabs.Main:AddParagraph({
+    Title = "Add Your Title",
+    Content = "Add Your Subtitle"
+})
+
+# 이것으로 스크립트를 끝내세요 
+
+Window:SelectTab(1)
