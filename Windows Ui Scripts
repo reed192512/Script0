@@ -1,4 +1,4 @@
-# Begin Making your script!
+# Begin Making your script!/스크립트 작성을 시작하세요! 
 
 if getgenv().script then return end 
 
@@ -76,7 +76,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/13B8B/nexus/releases/
 
 local Window = Fluent:CreateWindow({
     Title = "Name of your script", "",
-    SubTitle = "Subtitle of your script",
+    SubTitle = "Subtitle of your script. Powered By Jayyware",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
@@ -91,7 +91,7 @@ local Tabs = {
 
 }
 
-# Add a Button 
+# Add a Button/버튼 추가   
 
 local Button =
 Tabs.Scripts:AddButton({
@@ -101,13 +101,13 @@ Tabs.Scripts:AddButton({
     end
 })  
 
-# Add a Paragraph
+# Add a Paragraph/단락 추가 
 
 Tabs.Main:AddParagraph({
     Title = "Add Your Title",
     Content = "Add Your Subtitle"
 })
 
-# End the script with this
+# End the script with this/이것으로 스크립트를 끝내세요 
 
 Window:SelectTab(1)
