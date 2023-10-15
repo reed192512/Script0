@@ -1,4 +1,4 @@
-Begin Making your script!
+# Begin Making your script!
 
 if getgenv().script then return end 
 
@@ -91,7 +91,7 @@ local Tabs = {
 
 }
 
-Add a Button 
+# Add a Button 
 
 local Button =
 Tabs.Scripts:AddButton({
@@ -101,13 +101,13 @@ Tabs.Scripts:AddButton({
     end
 })  
 
-Add a Paragraph
+# Add a Paragraph
 
 Tabs.Main:AddParagraph({
     Title = "Add Your Title",
     Content = "Add Your Subtitle"
 })
 
-End the script with this
+# End the script with this
 
 Window:SelectTab(1)
