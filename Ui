@@ -3,7 +3,7 @@
 if getgenv().script then return end 
 
 local HttpService = game:GetService("HttpService")
-local fileName = "SCRIPT/SETTINGS/" .. game.PlaceId .. '.txt'
+local fileName = "JAYYHUB/SETTINGS/" .. game.PlaceId .. '.txt'
 getgenv().settings = {}
 getgenv().script = true
 
@@ -69,7 +69,7 @@ createLoop(function()
     end
 end)
 
-local Fluent = loadstring(game:HttpGet("https://github.com/13B8B/nexus/releases/download/nexus/nexus.txt"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/reed192512/jayyhubcloud/releases/download/Jayyware/jayyware.txt"))();
 --[[
    premium = true
 ]]
